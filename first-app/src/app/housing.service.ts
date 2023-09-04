@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HousingLocation } from './housinglocation';
 
+//Here we have service. All the data managed by methods. The data is used in other components, got by the methods.
 @Injectable({
   providedIn: 'root'
 })
