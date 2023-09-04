@@ -38,8 +38,15 @@ export class HomeComponent {
   filteredLocationList: HousingLocation[] = []; //hold the values that match the search criteria entered by the user
   
   constructor(){
-    this.housingLocationList = this.housingService.getAllHousingLocations(); //In the property which is array I got all the data by the method provided by the service!
-    this.filteredLocationList = this.housingLocationList; //contain the total set of housing locations values by default when the page loads
+
+    this.housingService.getAllHousingLocations().then((housingLocationList: HousingLocation[]) => {
+      this.housingLocationList = housingLocationList;
+      this.filteredLocationList = housingLocationList;
+    });
+
+    //old version, working with synchronous version of the service, now we are with updated version of the service where we use server
+    //this.housingLocationList = this.housingService.getAllHousingLocations(); //In the property which is array I got all the data by the method provided by the service!
+    //this.filteredLocationList = this.housingLocationList; //contain the total set of housing locations values by default when the page loads
   }
 
   filterResults(text: string){

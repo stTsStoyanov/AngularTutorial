@@ -58,7 +58,13 @@ export class DetailsComponent {
 
   constructor() {
       this.housingLocationId = Number(this.route.snapshot.params['id']); // getting the id param from the URL
-      this.housingLocation = this.housingService.getHousingLocationById(this.housingLocationId) //getting the data from service via id param
+
+      this.housingService.getHousingLocationById(this.housingLocationId).then(housingLocation =>{
+        this.housingLocation = housingLocation;
+      })
+
+      //old version, working with synchronous version of the service, now we are with updated version of the service where we use server
+      //this.housingLocation = this.housingService.getHousingLocationById(this.housingLocationId) //getting the data from service via id param
   }
 
   submitApplication() {
