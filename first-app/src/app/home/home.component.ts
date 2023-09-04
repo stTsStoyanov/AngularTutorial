@@ -15,13 +15,13 @@ import { HousingService } from '../housing.service';
   template: `
   <section>
     <form>
-      <input type="text" placeholder="Filter by city">
-      <button class="primary" type="button">Search</button>
+      <input type="text" placeholder="Filter by city" #filter>
+      <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
     </form>
   </section>
   <section class="results">
     <app-housing-location
-      *ngFor="let housingLocation of housingLocationList"[housingLocation]="housingLocation"> 
+      *ngFor="let housingLocation of filteredLocationList"[housingLocation]="housingLocation"> 
       <!-- looping through the array and passing data to other component. -->
     </app-housing-location>
   </section>
@@ -35,8 +35,21 @@ export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
   housingService : HousingService = inject(HousingService); //injecting dependency service where i have all information and few methods
 
+  filteredLocationList: HousingLocation[] = []; //hold the values that match the search criteria entered by the user
+  
   constructor(){
     this.housingLocationList = this.housingService.getAllHousingLocations(); //In the property which is array I got all the data by the method provided by the service!
+    this.filteredLocationList = this.housingLocationList; //contain the total set of housing locations values by default when the page loads
+  }
+
+  filterResults(text: string){
+    if(!text){
+      this.filteredLocationList = this.housingLocationList;
+    }
+
+    this.filteredLocationList = this.housingLocationList.filter(
+        housingLocation => housingLocation?.city.toLowerCase().includes(text.toLowerCase())
+      );
   }
 
   // housingLocation: HousingLocation = {
