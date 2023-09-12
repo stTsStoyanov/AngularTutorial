@@ -1,0 +1,12 @@
+
+<div *ngIf="hero">
+    <!-- if selectedHero, render the rest HTML! This condition occurs when button with method "onSelect" is clicked -->
+    <h2>{{hero.name | uppercase}} Detail:</h2>
+    <div>id: {{hero.id}}</div>
+    <div>
+        <label for="name">Hero name:</label>
+        <input id="name" [(ngModel)]="hero.name" placeholder="name of the hero">
+        <!-- here we have two way binding -->
+    </div>
+</div>
+

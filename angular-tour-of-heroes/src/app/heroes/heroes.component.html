@@ -2,24 +2,16 @@
 <ul class="heroes">
     <li *ngFor="let hero of heroes">
         <button type="button" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
+            <!-- here we have event listener and Angular class binding which add or remove CSS class under condition. Here the condition is: when hero === selectedHero, apply the CSS class, when not, do not add it! -->
             <span class="badge">{{hero.id}}</span>
             <span class="name">{{hero.name}}</span>
         </button>
     </li>
 </ul>
-
-<div *ngIf="selectedHero">
-    <!-- if selectedHero, render the rest HTML! This condition occurs when button with method "onSelect" is clicked -->
-    <h2>{{selectedHero.name | uppercase}} Detail:</h2>
-    <div>id: {{selectedHero.id}}</div>
-    <div>
-        <label for="name">Hero name:</label>
-        <input id="name" [(ngModel)]="selectedHero.name" placeholder="name of the hero">
-        <!-- here we have two way binding -->
-    </div>
-</div>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
 
 
+<!--  -->
 <!-- <h2>{{hero.name | uppercase}} Details</h2>
 <div><span>id: </span>{{hero.id}}</div>
 <div>
