@@ -1,14 +1,29 @@
 <h2>My Heroes</h2>
+<!-- LIST with links -->
 <ul class="heroes">
     <li *ngFor="let hero of heroes">
-        <button type="button" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
-            <!-- here we have event listener and Angular class binding which add or remove CSS class under condition. Here the condition is: when hero === selectedHero, apply the CSS class, when not, do not add it! -->
-            <span class="badge">{{hero.id}}</span>
-            <span class="name">{{hero.name}}</span>
-        </button>
+        <a routerLink="/detail/{{hero.id}}">
+            <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
     </li>
 </ul>
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+
+
+
+
+
+
+<!-- LIST with onSelect -->
+<!-- <ul class="heroes"> -->
+<!-- <li *ngFor="let hero of heroes"> -->
+<!-- <button type="button" (click)="onSelect(hero)" [class.selected]="hero === selectedHero" routerLink="/details/{{hero.id}}"> -->
+<!-- here we have event listener and Angular class binding which add or remove CSS class under condition. Here the condition is: when hero === selectedHero, apply the CSS class, when not, do not add it! -->
+<!-- <span class="badge">{{hero.id}}</span> -->
+<!-- <span class="name">{{hero.name}}</span> -->
+<!-- </button> -->
+<!-- </li> -->
+<!-- </ul> -->
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
 
 
 <!--  -->
