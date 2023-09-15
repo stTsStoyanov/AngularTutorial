@@ -42,4 +42,19 @@ export class HeroesComponent implements OnInit {
   ngOnInit() {
     this.getHeroes();
   }
+
+  add(name: string){
+    name = name.trim();
+    if(!name){ return };
+    this.heroService.addHero({ name } as Hero)
+      .subscribe( hero => {
+        this.heroes.push(hero);
+      });
+  }
+
+  delete(hero: Hero){
+    this.heroes = this.heroes.filter(element => element !== hero);
+    this.heroService.deleteHero(hero.id)
+      .subscribe() //although We do not need to handle any response, .subscribe() is a must
+  }
 }
