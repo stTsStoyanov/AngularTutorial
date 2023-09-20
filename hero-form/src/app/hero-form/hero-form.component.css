@@ -1,0 +1,13 @@
+/* Normal button style */
+.disabled-button {
+    background-color: #f5f5f5; /* Default background color for disabled button */
+    color: #1f1e1e; /* Default text color for disabled button */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition animation */
+  }
+
+/* Style for disabled button on hover */
+.disabled-button:hover:disabled {
+    background-color: #999; /* Change background color on hover */
+    color: #666; /* Change text color on hover */
+    cursor: not-allowed; /* Change cursor style to indicate disabled state */
+  }
